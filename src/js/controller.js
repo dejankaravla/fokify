@@ -10,11 +10,6 @@ import addRecipeView from './views/addRecipeView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
-// import { from } from 'core-js/fn/array';
-
-// if (module.hot) {
-//   module.hot.accept();
-// }
 
 const controlRecipes = async function () {
   try {
@@ -53,7 +48,7 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // 3) Render results
-    // resultsView.render(model.state.search.results);
+
     resultsView.render(model.getSearchResultsPage(1));
 
     // 4) Render inital pagination buttons
@@ -77,7 +72,7 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
+
   recipeView.update(model.state.recipe);
 };
 
@@ -127,9 +122,6 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderError(err.message);
   }
 };
-const newFeature = function () {
-  console.log('Welcome to the application');
-};
 
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -139,6 +131,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView._addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
-  newFeature();
 };
 init();
